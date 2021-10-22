@@ -24,7 +24,7 @@ public abstract class Person {
         this.birthdate = birthdate;
     }
 
-    private StringBuilder getFullNameBuilder() {
+    protected StringBuilder getFullNameBuilder() {
         return new StringBuilder(firstName)
                 .append(" ")
                 .append(lastName);
@@ -66,13 +66,11 @@ public abstract class Person {
         return birthdate;
     }
 
-    @Override
-    public String toString() {
+    protected StringBuilder toStringBuilder() {
         return getFullNameBuilder()
-                .append("born ")
+                .append(", born ")
                 .append(birthdate)
-                .append(", mail: ")
-                .append(email)
-                .toString();
+                .append(", email: ")
+                .append(email);
     }
 }
