@@ -25,7 +25,7 @@ public class QueueImpl extends Queue {
 
 	@Override
 	public int size() {
-		return -1;
+		return size;
 	}
 
 	@Override
