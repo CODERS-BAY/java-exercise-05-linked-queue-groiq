@@ -25,7 +25,7 @@ class QueueImplTest {
     }
 
     @Test
-    void testAddingIncreasesSize() {
+    void testAddingFirstPerson() {
         // Given
         QueueImpl given = new QueueImpl();
 
@@ -33,7 +33,11 @@ class QueueImplTest {
         given.add(boilerplatePerson1);
 
         // Then
-//        int actual =
+        int actualSize = given.size();
+        int expectedSize = 1;
+        assertEquals(expectedSize, actualSize);
+
+
     }
 
     @Test
