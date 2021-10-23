@@ -9,7 +9,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class QueueImplTest {
 
-    private static Person boilerplatePerson1 = new Employee("x", "x", "x", LocalDate.now(), "x", "x");
+    private static Person boilerplatePerson1 = new Employee("bp1", "x", "x", LocalDate.now(), "x", "x");
+    private static Person boilerplatePerson2 = new Employee("bp2d", "x", "x", LocalDate.now(), "x", "x");
 
     @Test
     void testSizeOfEmptyQueue() {
@@ -36,16 +37,50 @@ class QueueImplTest {
         int actualSize = given.size();
         int expectedSize = 1;
         assertEquals(expectedSize, actualSize);
-
-
     }
+
+    @Test
+    void shouldRetrieveFromSingleNodeQueue() {
+        // Given
+        QueueImpl given = new QueueImpl();
+        given.add(boilerplatePerson1);
+
+        // When
+        Person actualPerson = given.retrieve();
+
+        // Then
+        Person expectedPerson = boilerplatePerson1;
+        assertSame(expectedPerson, actualPerson);
+    }
+
+    @Test
+    void shouldRetrieveFirstOfTwo() {
+        // Given
+        QueueImpl given = new QueueImpl();
+        given.add(boilerplatePerson1);
+        given.add(boilerplatePerson2);
+
+        // When
+        Person actualPerson = given.retrieve();
+
+        // Then
+        Person expectedPerson = boilerplatePerson1;
+        assertSame(expectedPerson, actualPerson);
+    }
+
+    @Test
+    void shouldDecreaseSizeOnRetrieve() {
+        
+    }
+
+    // should decreaase size on retrieve
+
+    // should retrieve first node, then second node
+
+    // should throw exception on empty queue
 
     @Test
     void testToString() {
-    }
-
-    @Test
-    void testRetrieve() {
     }
 
     @Test

@@ -8,7 +8,7 @@ import skeleton.Queue;
 
 public class QueueImpl extends Queue {
 
-	public static int size = 0;
+	public int size = 0;
 
 	public QueueImpl() {
 		super();
@@ -16,11 +16,25 @@ public class QueueImpl extends Queue {
 
 	@Override
 	public void add(Person p) {
+		Node newNode = new Node(p);
+		if (last == null) {
+			first = newNode;
+		} else {
+			last.next = newNode;
+		}
+		last = newNode;
+		size++;
 	}
 
 	@Override
 	public Person retrieve() throws NoSuchElementException {
-		return null;
+		if (first == null) {
+			throw new NoSuchElementException("queue is empty");
+		}
+
+		Node resultNode = first;
+		first = resultNode.next;
+		return resultNode.person;
 	}
 
 	@Override
