@@ -30,7 +30,7 @@ public abstract class Queue {
 	 */
 	public abstract int size();
 	/**
-	 * Emptiethes the list.
+	 * Empties the list.
 	 */
 	public abstract void clear();
 	
