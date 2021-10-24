@@ -34,6 +34,7 @@ public class QueueImpl extends Queue {
 
 		Node resultNode = first;
 		first = resultNode.next;
+		size--;
 		return resultNode.person;
 	}
 

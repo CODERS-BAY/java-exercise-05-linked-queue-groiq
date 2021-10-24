@@ -70,11 +70,32 @@ class QueueImplTest {
 
     @Test
     void shouldDecreaseSizeOnRetrieve() {
-        
+        // Given
+        QueueImpl given = new QueueImpl();
+        given.add(boilerplatePerson1);
+        given.add(boilerplatePerson2);
+
+        // When
+        given.retrieve();
+
+        // Then
+        int expected = 1;
+        int actual = given.size();
+        assertEquals(expected, actual);
     }
 
-    // should decreaase size on retrieve
+    @Test
+    void shouldRetrieveFirstBeforeSecond() {
+        // should retrieve first the first node, then the second
 
+        // Given
+        QueueImpl given = new QueueImpl();
+        given.add(boilerplatePerson1);
+        given.add(boilerplatePerson2);
+
+        // When
+        
+    }
     // should retrieve first node, then second node
 
     // should throw exception on empty queue
