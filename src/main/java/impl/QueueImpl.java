@@ -71,17 +71,28 @@ public class QueueImpl extends Queue {
 	 */
 	public Iterator<Person> iterator() {
 		return new Iterator<Person>() {
+			private Node underCursor;
 
 			@Override
 			public boolean hasNext() {
-				return false;
+				if (first == null) {
+					return false;
+				}
+				return (underCursor == null || underCursor.next != null);
 			}
 
 			@Override
 			public Person next() {
-				return null;
+				if (underCursor == null) {
+					underCursor = first;
+				} else {
+					underCursor = underCursor.next;
+				}
+				if (underCursor == null) {
+					throw new NoSuchElementException();
+				}
+				return underCursor.person;
 			}
-
 		};
 	}
 

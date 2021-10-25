@@ -5,6 +5,7 @@ import skeleton.Person;
 import skeleton.Queue;
 
 import java.time.LocalDate;
+import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -153,14 +154,56 @@ class QueueImplTest {
     }
 
     @Test
-    void testToString() {
-    }
-
-    @Test
     void testIterator() {
+        QueueImpl given = new QueueImpl();
+        given.add(testPerson1);
+        given.add(testPerson2);
+
+        Iterator<Person> givenIterator = given.iterator();
+
+        assertTrue(givenIterator.hasNext());
+        Person actual = givenIterator.next();
+        assertSame(testPerson1, actual);
+
+        assertTrue(givenIterator.hasNext());
+        actual = givenIterator.next();
+        assertSame(testPerson2, actual);
+
+        assertFalse(givenIterator.hasNext());
+        assertThrows(NoSuchElementException.class, () -> {
+            givenIterator.next();
+        });
     }
 
     @Test
-    void testToString1() {
+    void testIteratorOnEmpty() {
+        QueueImpl given = new QueueImpl();
+        Iterator<Person> givenIterator = given.iterator();
+
+        assertFalse(givenIterator.hasNext());
+        assertThrows(NoSuchElementException.class, () -> {
+            givenIterator.next();
+        });
+    }
+
+    @Test
+    void testToString() {
+        QueueImpl given = new QueueImpl();
+
+        String actual = given.toString();
+
+        String expected = "empty list";
+        assertEquals(expected, actual);
+
+        Person p1 = new Employee("Adam","One", "adam@host", LocalDate.of(1991, 12, 14), "Accounting", "accountant");
+        Person p2 = new Employee("Bertie","Two", "bertie@host", LocalDate.of(1978, 11, 24), "Backoffice", "bost obener");
+        given.add(p1);
+        given.add(p2);
+
+        actual = given.toString();
+
+        expected = "Adam One, born 1991-12-14, email: adam@host, accountant in Accounting -> " +
+                "Bertie Two, born 1978-11-24, email: bertie@host, bost obener in Backoffice ";
+        assertEquals(expected, actual);
     }
 }
