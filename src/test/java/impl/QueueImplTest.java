@@ -2,6 +2,7 @@ package impl;
 
 import org.junit.jupiter.api.Test;
 import skeleton.Person;
+import skeleton.Queue;
 
 import java.time.LocalDate;
 import java.util.NoSuchElementException;
@@ -15,7 +16,7 @@ class QueueImplTest {
 
     @Test
     void testSizeOfEmptyQueue() {
-        QueueImpl given = new QueueImpl();
+        Queue given = new QueueImpl();
 
         int actual = given.size();
 
@@ -25,7 +26,7 @@ class QueueImplTest {
 
     @Test
     void testAddingFirstPerson() {
-        QueueImpl given = new QueueImpl();
+        Queue given = new QueueImpl();
 
         given.add(testPerson1);
 
@@ -36,7 +37,7 @@ class QueueImplTest {
 
     @Test
     void shouldRetrieveFromSingleNodeQueue() {
-        QueueImpl given = new QueueImpl();
+        Queue given = new QueueImpl();
         given.add(testPerson1);
 
         Person actualPerson = given.retrieve();
@@ -47,7 +48,7 @@ class QueueImplTest {
 
     @Test
     void shouldRetrieveFirstOfTwo() {
-        QueueImpl given = new QueueImpl();
+        Queue given = new QueueImpl();
         given.add(testPerson1);
         given.add(testPerson2);
 
@@ -59,7 +60,7 @@ class QueueImplTest {
 
     @Test
     void shouldDecreaseSizeOnRetrieve() {
-        QueueImpl given = new QueueImpl();
+        Queue given = new QueueImpl();
         given.add(testPerson1);
         given.add(testPerson2);
 
@@ -75,7 +76,7 @@ class QueueImplTest {
         // should retrieve first the first node, then the second
 
         // Given
-        QueueImpl given = new QueueImpl();
+        Queue given = new QueueImpl();
         given.add(testPerson1);
         given.add(testPerson2);
 
@@ -96,7 +97,7 @@ class QueueImplTest {
 
     @Test
     void shouldThrowErrorOnRetrievingFromUnfilledQueue() {
-        QueueImpl given = new QueueImpl();
+        Queue given = new QueueImpl();
 
         Exception exception = assertThrows(NoSuchElementException.class, () -> {
             given.retrieve();
@@ -109,7 +110,7 @@ class QueueImplTest {
 
     @Test
     void shouldThrowErrorOnRetrievingFromEmptiedQueue() {
-        QueueImpl given = new QueueImpl();
+        Queue given = new QueueImpl();
         given.add(testPerson1);
         given.add(testPerson2);
         given.retrieve();
@@ -126,7 +127,7 @@ class QueueImplTest {
 
     @Test
     void shouldHandleFillEmptyRefill() {
-        QueueImpl given = new QueueImpl();
+        Queue given = new QueueImpl();
         given.add(testPerson1);
 
         given.retrieve();
@@ -138,11 +139,21 @@ class QueueImplTest {
     }
 
     @Test
-    void testToString() {
+    void testClear() {
+        Queue given = new QueueImpl();
+        given.add(testPerson1);
+        given.add(testPerson2);
+
+        given.clear();
+
+        assertEquals(0, given.size());
+        assertThrows(NoSuchElementException.class, () -> {
+            given.retrieve();
+        });
     }
 
     @Test
-    void testClear() {
+    void testToString() {
     }
 
     @Test

@@ -52,6 +52,16 @@ public class QueueImpl extends Queue {
 		 * generational GC if the discarded nodes inhabit more than one generation - is
 		 * sure to free memory even if there is a reachable Iterator
 		 */
+		Node queueFront = first;
+		first = null;
+		Node nextInLine = null;
+		while (queueFront != null) {
+			nextInLine = queueFront.next;
+			queueFront.next = null;
+			queueFront = nextInLine;
+			size--;
+		}
+		last = null;
 	}
 
 	/**
