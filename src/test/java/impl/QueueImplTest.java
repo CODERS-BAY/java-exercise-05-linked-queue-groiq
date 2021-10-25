@@ -94,7 +94,18 @@ class QueueImplTest {
         given.add(boilerplatePerson2);
 
         // When
-        
+        Person actual1 = given.retrieve();
+
+        // Then
+        Person expected1 = boilerplatePerson1;
+        assertSame(expected1, actual1);
+
+        // When
+        Person actual2 = given.retrieve();
+
+        // Then
+        Person expected2 = boilerplatePerson2;
+        assertSame(expected2, actual2);
     }
     // should retrieve first node, then second node
 
