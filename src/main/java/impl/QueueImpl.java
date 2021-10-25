@@ -17,7 +17,7 @@ public class QueueImpl extends Queue {
 	@Override
 	public void add(Person p) {
 		Node newNode = new Node(p);
-		if (last == null) {
+		if (first == null) {
 			first = newNode;
 		} else {
 			last.next = newNode;

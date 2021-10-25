@@ -124,6 +124,18 @@ class QueueImplTest {
         assertTrue(actualMessage.contains(expectedMessage));
     }
 
+    @Test
+    void shouldHandleFillEmptyRefill() {
+        QueueImpl given = new QueueImpl();
+        given.add(testPerson1);
+
+        given.retrieve();
+        given.add(testPerson2);
+        Person actual = given.retrieve();
+
+        Person expected = testPerson2;
+        assertSame(expected, actual);
+    }
 
     @Test
     void testToString() {
