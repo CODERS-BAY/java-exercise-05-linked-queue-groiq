@@ -10,8 +10,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class QueueImplTest {
 
-    private static Person testPerson1 = new Employee("bp1", "x", "x", LocalDate.now(), "x", "x");
-    private static Person testPerson2 = new Employee("bp2d", "x", "x", LocalDate.now(), "x", "x");
+    private static Person testPerson1 = new Employee("person 1", "x", "x", LocalDate.now(), "x", "x");
+    private static Person testPerson2 = new Employee("person 2", "x", "x", LocalDate.now(), "x", "x");
 
     @Test
     void testSizeOfEmptyQueue() {
