@@ -94,6 +94,36 @@ class QueueImplTest {
         assertSame(expected2, actual2);
     }
 
+    @Test
+    void shouldThrowErrorOnRetrievingFromUnfilledQueue() {
+        QueueImpl given = new QueueImpl();
+
+        Exception exception = assertThrows(NoSuchElementException.class, () -> {
+            given.retrieve();
+        });
+
+        String expectedMessage = "queue is empty";
+        String actualMessage = exception.getMessage();
+        assertTrue(actualMessage.contains(expectedMessage));
+    }
+
+    @Test
+    void shouldThrowErrorOnRetrievingFromEmptiedQueue() {
+        QueueImpl given = new QueueImpl();
+        given.add(testPerson1);
+        given.add(testPerson2);
+        given.retrieve();
+        given.retrieve();
+
+        Exception exception = assertThrows(NoSuchElementException.class, () -> {
+            given.retrieve();
+        });
+
+        String expectedMessage = "queue is empty";
+        String actualMessage = exception.getMessage();
+        assertTrue(actualMessage.contains(expectedMessage));
+    }
+
 
     @Test
     void testToString() {
